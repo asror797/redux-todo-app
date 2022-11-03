@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { useDispatch , useSelector }from "react-redux"
+import NewTodo from "./components/NewTodo";
+import Todos from "./components/Todos";
+import { addTodo } from './slices/todos'
+
 
 function App() {
+
+  const dispatch = useDispatch()
+
+  const todos = useSelector((state) => state.todos)
+
+  const [title , setTitle ] = useState('')
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div className="container">
+      <header>
+          <NewTodo/>
       </header>
+      <Todos/>
     </div>
   );
 }
